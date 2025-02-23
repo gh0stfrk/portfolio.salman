@@ -6,9 +6,6 @@ tags: "api,python,docker"
 author: "salman"
 ---
 
-# Testing APIs
-
-
 APIs are the backbone of modern web applications, allowing different systems to communicate. Whether you're developing a web service or consuming one, testing APIs ensures reliability, performance, and security. In this article, we'll explore different ways to test APIs in Python using tools like `requests` and `pytest`.
 
 ## Why Test APIs?
