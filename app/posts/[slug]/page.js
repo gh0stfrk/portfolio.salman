@@ -22,8 +22,8 @@ export const generateStaticParams = async () => {
     }));
 };
 
-const PostPage = (props) => {
-    const slug = props.params.slug;
+const PostPage = async (props) => {
+    const slug = await props.params.slug;
     const post = getPostContent(slug);
     const tags = post.data.tags.split(',')
     return (

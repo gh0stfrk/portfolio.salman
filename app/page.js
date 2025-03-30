@@ -18,7 +18,7 @@ const Hero = () => {
         <h1 className="text-4xl text-black font-bold font-mono">Salman Sayyed</h1>
         <p className="text-black mt-2 text-sm">Cloud Engineer</p>
         <p className="text-xs flex items-center justify-center my-2">
-          <LocationOnIcon fontSize="small" /> Mumbai, India
+          <LocationOnIcon fontSize="small" color="inherit" /> Mumbai, India
         </p>
         <p className="text-black mt-2">I build cloud-oriented solutions using AWS and JavaScript.</p>
         <p className="flex gap-2 justify-center my-2">
@@ -47,7 +47,6 @@ const Hero = () => {
           >
           <LinkedInIcon />
           </IconButton>
-
         </p>
       </div>
     </div>
@@ -65,7 +64,6 @@ const HomePage = () => {
     <div>
       <Navbar text="posts" />
       <Hero />
-
       {/* <div className="grid grid-cols-1 gap-4">{postPreviews}</div> */}
     </div>
   );

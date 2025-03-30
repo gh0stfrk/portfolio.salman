@@ -2,6 +2,8 @@
 title: Starting with zero
 subtitle: The start of something great comes from nothing.
 date: "2025-01-19"
+tags: "starting,fresh,new"
+author: "salman"
 ---
 
 # Starting with zero

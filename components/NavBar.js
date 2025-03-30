@@ -3,6 +3,11 @@
 import { useRouter } from "next/navigation";
 
 const Navbar = ({text}) => {
+    // Add more routes as needed
+    const routeMap = {
+        "posts": "posts",
+        "home": "",
+    }
     const router = useRouter();
     const goToHome = () => {
         router.push('/');
@@ -29,8 +34,8 @@ const Navbar = ({text}) => {
                 <ul className="flex space-x-4">
                     <li>
                         <a 
-                            href={`\\`+text}
-                            className="relative group text-black transition-colors duration-300 ease-in-out"
+                            href={`\\`+routeMap[text]}
+                            className="relative group text-black transition-colors duration-300 ease-in-out text-sm"
                         >
                             {text}
                             <span className="absolute left-0 bottom-0 w-0 h-[2px] bg-black transition-all duration-500 ease-in-out group-hover:w-full"></span>
