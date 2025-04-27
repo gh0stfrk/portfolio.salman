@@ -1,107 +1,187 @@
 ---
-title: Testing APIs
-subtitle: Test APIs with Python
+title: Testing APIs Like a Pro
+subtitle: A Comprehensive Guide to API Testing with Python
 date: "2025-01-10"
-tags: "api,python,docker"
+tags: "api,python,testing,pytest,automation,backend"
 author: "salman"
 ---
 
-APIs are the backbone of modern web applications, allowing different systems to communicate. Whether you're developing a web service or consuming one, testing APIs ensures reliability, performance, and security. In this article, we'll explore different ways to test APIs in Python using tools like `requests` and `pytest`.
+# Testing APIs Like a Pro: A Python Guide
 
-## Why Test APIs?
+In today's microservices architecture, APIs are the glue that holds applications together. Writing robust API tests isn't just good practice—it's essential for maintaining reliable software. Let's dive into practical API testing strategies using Python.
 
-Testing APIs is essential for:
+## Why API Testing Matters
 
-- Ensuring endpoints return expected responses.
-- Validating data correctness.
-- Checking for proper error handling.
-- Measuring performance and reliability.
+Before we jump into code, let's understand why API testing is crucial:
 
-## Getting Started with API Testing
+- **Reliability**: Catch issues before they reach production
+- **Documentation**: Tests serve as living documentation
+- **Confidence**: Deploy changes with peace of mind
+- **Integration**: Ensure systems work together seamlessly
 
-We'll use the `requests` library to send HTTP requests and `pytest` for writing test cases.
+## Setting Up Your Testing Environment
 
-### Install Dependencies
+First, let's set up a proper testing environment:
 
 ```sh
-pip install requests pytest
+# Create a virtual environment
+python -m venv venv
+source venv/bin/activate
+
+# Install dependencies
+pip install requests pytest pytest-cov responses
 ```
 
-### Sending a Simple API Request
+## Basic API Testing
 
-Here's a basic example of making a GET request to an API:
-
-```python
-import requests
-
-url = "https://jsonplaceholder.typicode.com/posts/1"
-response = requests.get(url)
-
-data = response.json()
-print("Title:", data["title"])
-```
-
-### Writing Tests with Pytest
-
-Create a test file, `test_api.py`, and add the following tests:
+Let's start with fundamental API tests:
 
 ```python
+# test_basic_api.py
 import requests
+import pytest
 
-def test_get_post():
-    url = "https://jsonplaceholder.typicode.com/posts/1"
-    response = requests.get(url)
+BASE_URL = "https://api.example.com/v1"
+
+def test_get_user():
+    """Test retrieving a user"""
+    response = requests.get(f"{BASE_URL}/users/1")
     
     assert response.status_code == 200
-    json_data = response.json()
-    assert "title" in json_data
-
-def test_invalid_endpoint():
-    url = "https://jsonplaceholder.typicode.com/invalid"
-    response = requests.get(url)
+    data = response.json()
     
-    assert response.status_code == 404
+    # Validate response structure
+    assert "id" in data
+    assert "name" in data
+    assert "email" in data
+
+def test_create_user():
+    """Test creating a new user"""
+    user_data = {
+        "name": "John Doe",
+        "email": "john@example.com"
+    }
+    
+    response = requests.post(
+        f"{BASE_URL}/users",
+        json=user_data
+    )
+    
+    assert response.status_code == 201
+    data = response.json()
+    assert data["name"] == user_data["name"]
 ```
 
-### Running the Tests
+## Advanced Testing Techniques
 
-Run the tests using:
+### 1. Test Fixtures
 
-```sh
-pytest test_api.py
-```
-
-## Mocking API Responses
-
-When testing, you may not always want to hit a live API. You can use `responses` to mock API responses:
-
-```sh
-pip install responses
-```
-
-Example test with mocking:
+Reuse common setup code with fixtures:
 
 ```python
+# conftest.py
+import pytest
 import requests
+
+@pytest.fixture
+def auth_header():
+    """Provide authentication header for tests"""
+    token = "your-auth-token"
+    return {"Authorization": f"Bearer {token}"}
+
+@pytest.fixture
+def test_user():
+    """Create and cleanup a test user"""
+    # Setup
+    user_data = {"name": "Test User", "email": "test@example.com"}
+    response = requests.post("https://api.example.com/v1/users", json=user_data)
+    user = response.json()
+    
+    yield user
+    
+    # Cleanup
+    requests.delete(f"https://api.example.com/v1/users/{user['id']}")
+```
+
+### 2. Mocking API Responses
+
+Use `responses` library for reliable tests:
+
+```python
+# test_mocked_api.py
 import responses
+import requests
 
 @responses.activate
-def test_mocked_api():
-    responses.add(responses.GET, "https://example.com/data",
-                  json={"message": "Hello, world!"}, status=200)
+def test_user_not_found():
+    """Test handling of non-existent user"""
+    # Mock 404 response
+    responses.add(
+        responses.GET,
+        "https://api.example.com/v1/users/999",
+        json={"error": "User not found"},
+        status=404
+    )
     
-    response = requests.get("https://example.com/data")
-    assert response.status_code == 200
-    assert response.json()["message"] == "Hello, world!"
+    response = requests.get("https://api.example.com/v1/users/999")
+    assert response.status_code == 404
+    assert response.json()["error"] == "User not found"
 ```
 
-## Conclusion
+### 3. Parameterized Tests
 
-Testing APIs ensures reliability and correctness. We covered making API requests, writing tests with `pytest`, and mocking responses. As you build APIs, integrating automated tests will save you from unexpected failures and ensure smooth development.
+Test multiple scenarios efficiently:
 
-More testing techniques are on the way, stay tuned!
+```python
+# test_parameterized.py
+import pytest
 
+@pytest.mark.parametrize("user_id,expected_status", [
+    (1, 200),
+    (999, 404),
+    ("invalid", 400)
+])
+def test_get_user_scenarios(user_id, expected_status):
+    """Test different user retrieval scenarios"""
+    response = requests.get(f"{BASE_URL}/users/{user_id}")
+    assert response.status_code == expected_status
+```
 
+## Best Practices
 
-## Inspirations
-https://johnny.am/
+1. **Isolation**: Each test should be independent
+2. **Cleanup**: Always clean up test data
+3. **Configuration**: Use environment variables for API URLs and credentials
+4. **Validation**: Check both success and error cases
+5. **Documentation**: Write clear test descriptions
+
+## Running Tests with Coverage
+
+Track your test coverage:
+
+```sh
+# Run tests with coverage report
+pytest --cov=your_api_package tests/
+```
+
+## Common Pitfalls to Avoid
+
+- **Hard-coded credentials**: Use environment variables
+- **Missing error cases**: Test both success and failure scenarios
+- **Incomplete cleanup**: Always clean up test data
+- **Brittle tests**: Don't rely on specific data ordering
+- **Slow tests**: Use mocking for non-critical external services
+
+## Next Steps
+
+- Implement continuous integration (CI) pipeline
+- Add performance testing
+- Set up automated security testing
+- Monitor API health in production
+
+Stay tuned for more advanced topics including:
+- Load testing with Locust
+- Contract testing with Pact
+- Security testing with OWASP ZAP
+
+Remember: Good tests are an investment in your application's future!
