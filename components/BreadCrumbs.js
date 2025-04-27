@@ -11,7 +11,7 @@ const Breadcrumbs = () => {
       <ul className="flex items-center gap-2">
         <li>
           <Link href="/" className="hover:underline">
-            Home
+            home
           </Link>
         </li>
         {pathSegments.map((segment, index) => {
@@ -22,10 +22,10 @@ const Breadcrumbs = () => {
             <li key={href} className="flex items-center">
               <span className="mx-2">/</span>
               {isLast ? (
-                <span className="text-gray-500">{segment}</span>
+                <span className="text-gray-500">{segment.toString().replace(/-/g, ' ')}</span>
               ) : (
                 <Link href={href} className="hover:underline">
-                  {segment}
+                  {segment.toString()}
                 </Link>
               )}
             </li>
