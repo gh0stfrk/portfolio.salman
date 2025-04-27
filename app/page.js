@@ -37,7 +37,7 @@ const HomePage = () => {
           {/* Left Sidebar */}
           <div className="flex flex-col gap-4">
             {/* Profile Card */}
-            <div className="bg-gray-200 rounded-xl p-5">
+            <div className="bg-gray-200 rounded-xl p-7">
 
               <h2 className="text-2xl font-bold">Salman Sayyed</h2>
               <p className="text-sm text-gray-600">Cloud Engineer</p>
@@ -68,7 +68,7 @@ const HomePage = () => {
           </div>
           {/* Main Content */}
           <div className="bg-gray-100 rounded-xl p-6 md:p-8 h-full backdrop-blur-sm">
-            <h2 className=" text-2xl font-bold mb-6">Projects</h2>
+            {/* <h2 className=" text-2xl font-bold mb-6">Projects</h2> */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               {projects.map((project, index) => (
                 <div 
@@ -78,7 +78,7 @@ const HomePage = () => {
                      p-4
                     transform transition-all duration-300
                     hover:scale-[1.02] hover:shadow-lg
-                    border border-gray-100 rounded-lg
+                    border border-gray-200 rounded-lg
                   `}
                 >
                   <h3 className="text-lg font-semibold mb-2">{project.title}</h3>

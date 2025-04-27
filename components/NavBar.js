@@ -1,20 +1,16 @@
 "use client"
-
 import { useRouter } from "next/navigation";
 
 const Navbar = ({text}) => {
     // Add more routes as needed
     const routeMap = {
-        "posts": "posts",
-        "home": "",
+        "posts": "/posts",
+        "home": "/",
     }
     const router = useRouter();
-    const goToHome = () => {
-        router.push('/');
-    }
     return (
         <nav className="flex p-5 justify-between items-center">
-            <div className="logo group" onClick={goToHome}>
+            <div href="/" className="flex items-center logo group">
                 {/* SVG Logo */}
                 <svg width="84" height="15" viewBox="0 0 84 19" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <line 
@@ -34,7 +30,7 @@ const Navbar = ({text}) => {
                 <ul className="flex space-x-4">
                     <li>
                         <a 
-                            href={`\\`+routeMap[text]}
+                            href={routeMap[text]}
                             className="relative group text-black transition-colors duration-300 ease-in-out text-sm"
                         >
                             {text}

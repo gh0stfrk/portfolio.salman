@@ -32,7 +32,7 @@ const PostPage = async ({params}) => {
             {/* Container with max-width and responsive padding */}
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 {/* Breadcrumbs with consistent padding */}
-                <div className="py-4">
+                <div className="py-4 text-center">
                     <Breadcrumbs />
                 </div>
 

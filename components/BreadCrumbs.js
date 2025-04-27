@@ -10,9 +10,9 @@ const Breadcrumbs = () => {
     <nav className="text-sm text-gray-600 my-4">
       <ul className="flex items-center gap-2">
         <li>
-          <Link href="/" className="hover:underline">
+          <div className="hover:underline">
             home
-          </Link>
+          </div>
         </li>
         {pathSegments.map((segment, index) => {
           const href = "/" + pathSegments.slice(0, index + 1).join("/");

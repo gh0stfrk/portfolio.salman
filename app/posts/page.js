@@ -1,9 +1,7 @@
 'use client';
 import { useState, useEffect } from 'react';
-import Link from "next/link";
 import Navbar from "@/components/NavBar";
 import PostPreview from "@/components/PostsPreview";
-import PostHeader from "@/components/PostHeader.js";
 
 import { FaSearch } from 'react-icons/fa';
 
