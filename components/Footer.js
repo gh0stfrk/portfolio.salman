@@ -5,7 +5,7 @@ const Footer = () => (
     <div className="max-w-4xl mx-auto w-full flex flex-col items-center">
       <div className="flex space-x-6 mb-4">
         <a
-          href="https://github.com/awswithsalman"
+          href="https://github.com/gh0stfrk"
           target="_blank"
           rel="noopener noreferrer"
           className="text-2xl"
@@ -14,7 +14,7 @@ const Footer = () => (
           <FaGithub />
         </a>
         <a
-          href="https://linkedin.com/in/awswithsalman"
+          href="https://www.linkedin.com/in/syydsalman"
           target="_blank"
           rel="noopener noreferrer"
           className="text-2xl"
@@ -23,7 +23,7 @@ const Footer = () => (
           <FaLinkedin />
         </a>
         <a
-          href="https://twitter.com/awswithsalman"
+          href="https://x.com/gh0stfrk"
           target="_blank"
           rel="noopener noreferrer"
           className="text-2xl"
