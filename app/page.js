@@ -1,5 +1,3 @@
-import { FaGithub, FaLinkedin, FaXTwitter } from 'react-icons/fa6';
-import { FaLocationDot } from "react-icons/fa6";
 import Navbar from "@/components/NavBar";
 import getPostMetadata from "@/utils/getPostMetadata";
 import Link from "next/link";
@@ -58,7 +56,7 @@ const PostPreview = ({ title, subtitle, author, date, slug }) => (
 );
 
 const HomePage = () => {
-  const posts = getPostMetadata(); // [{ title, subtitle, author, date, slug, ... }]
+  const posts = getPostMetadata();
   return (
     <div className="min-h-screen w-full flex flex-col">
       <Navbar/>

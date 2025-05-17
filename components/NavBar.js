@@ -1,22 +1,21 @@
 "use client"
-import { useRouter } from "next/navigation";
 import { useState } from "react";
 
-const Navbar = ({text}) => {
-    // Add more routes as needed
+const Navbar = () => {
+
     const routeMap = {
-        "posts": "/posts",
+        "about": "/about",
         "home": "/",
     }
-    const router = useRouter();
+
     const [menuOpen, setMenuOpen] = useState(false);
 
     return (
         <nav className="flex p-5 justify-between items-center">
-            <div className="logo">
+            <a className="logo" href="/">
                 <h1 className="text-2xl font-bold text-black">Salman Sayyed</h1>
                 <p className="text-sm text-gray-500">Cloud Engineer</p>
-            </div>
+            </a>
             {/* Hamburger menu for mobile */}
             <div className="md:hidden">
                 <button
