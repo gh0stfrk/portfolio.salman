@@ -25,31 +25,29 @@ const PostPreview = ({ title, subtitle, author, date, slug }) => (
     <div
       className="
         w-full
-        px-2 sm:px-6 py-5
-        mb-6
+        mx-auto
         bg-white
-        font-semibold
-        shadow-sm
+        rounded-2xl
+        border border-black/10
+        shadow hover:shadow-lg
         transition
-        cursor-pointer
-        relative
-        group-hover:shadow-md
+        px-6 py-5
+        mb-8
         flex flex-col
-        min-h-[110px]
-        border-0
-        rounded-[1.25rem]
-       
-        before:transition-all before:duration-300 before:ease-in-out
-        after:transition-all after:duration-300 after:ease-in-out
-        overflow-hidden
+        gap-2
+        relative
+        cursor-pointer
+        group
       "
-      data-corner
     >
-      <div className="text-lg font-bold truncate">{title}</div>
-      <div className="text-sm font-normal text-gray-700 truncate">{subtitle}</div>
-      <div className="flex justify-between items-end mt-4 text-sm font-normal text-gray-500">
-        <span className="self-end">{author}</span>
-        <span className="self-end">{formatDate(date)}</span>
+      <div className="flex items-center justify-between">
+        <h2 className="text-xl font-bold text-black truncate">{title}</h2>
+        <span className="text-xs text-gray-400">{formatDate(date)}</span>
+      </div>
+      <div className="text-base text-gray-700 truncate">{subtitle}</div>
+      <div className="flex items-center justify-between mt-2">
+        <span className="text-sm text-gray-500 font-medium">{author}</span>
+        <span className="text-xs bg-gray-100 px-2 py-0.5 rounded">{slug.replace(/-/g, ' ')}</span>
       </div>
     </div>
   </Link>
