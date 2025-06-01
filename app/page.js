@@ -2,66 +2,34 @@ import Navbar from "@/components/NavBar";
 import getPostMetadata from "@/utils/getPostMetadata";
 import Link from "next/link";
 import Footer from '@/components/Footer';
+import PostPreview from "@/components/PostsPreview";
 
-// Helper to format date as "10th January"
-function formatDate(dateString) {
-  const date = new Date(dateString);
-  const day = date.getDate();
-  const month = date.toLocaleString('default', { month: 'long' });
-  const getOrdinal = (n) => {
-    if (n > 3 && n < 21) return 'th';
-    switch (n % 10) {
-      case 1: return "st";
-      case 2: return "nd";
-      case 3: return "rd";
-      default: return "th";
-    }
-  };
-  return `${day}${getOrdinal(day)} ${month}`;
-}
-
-const PostPreview = ({ title, subtitle, author, date, slug }) => (
-  <Link href={`/posts/${slug}`} className="block group">
-    <div
-      className="
-        w-full
-        px-2 sm:px-6 py-5
-        mb-6
-        bg-white
-        font-semibold
-        shadow-sm
-        transition
-        cursor-pointer
-        relative
-        group-hover:shadow-md
-        flex flex-col
-        min-h-[110px]
-        border-0
-        rounded-[1.25rem]
-       
-        before:transition-all before:duration-300 before:ease-in-out
-        after:transition-all after:duration-300 after:ease-in-out
-        overflow-hidden
-      "
-      data-corner
-    >
-      <div className="text-lg font-bold truncate">{title}</div>
-      <div className="text-sm font-normal text-gray-700 truncate">{subtitle}</div>
-      <div className="flex justify-between items-end mt-4 text-sm font-normal text-gray-500">
-        <span className="self-end">{author}</span>
-        <span className="self-end">{formatDate(date)}</span>
-      </div>
-    </div>
-  </Link>
-);
 
 const HomePage = () => {
   const posts = getPostMetadata();
   return (
-    <div className="min-h-screen w-full flex flex-col">
-      <Navbar/>
-      <div className="w-full min-h-[calc(100vh-64px)] bg-white flex flex-col py-8">
-        <div className="w-full px-2 sm:px-6">
+    <div className="min-h-screen w-full flex flex-col ">
+      <Navbar />
+      {/* Hero Section */}
+
+      <section className="w-full flex flex-col items-center py-12 mb-8">
+        <img src="/agentVenom.png" alt="Salman" className="w-24 h-24 rounded-full mb-4 shadow" />
+
+        <h1 className="text-3xl font-bold mb-2 font-custom">Hi, I'm Salman</h1>
+        <p className="text-lg text-gray-600 mb-4">Cloud Engineer</p>
+        <p className="text-center max-w-2xl text-gray-500 mb-6">
+          I build scalable cloud solutions and modern web applications. Passionate about technology and sharing knowledge.
+        </p>
+        <p className="flex gap-4">
+          <Link href="/about" className="px-6 py-2 bg-blue-600 text-white rounded-lg font-semibold shadow hover:bg-blue-700 transition">Connect</Link>
+          <a href="#projects" className="px-6 py-2 bg-black text-white rounded-lg font-semibold shadow hover:bg-gray-800 transition">Projects</a>
+        </p>
+      </section>
+
+      {/* Blog Posts Section */}
+      <div className="w-full max-w-4xl mx-auto px-2 sm:px-6" id="projects">
+        <h2 className="text-2xl font-bold mb-6 text-black text-center">Blogs</h2>
+        <div className="flex flex-col gap-6">
           {posts.map(post => (
             <PostPreview
               key={post.slug}

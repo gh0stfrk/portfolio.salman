@@ -1,12 +1,13 @@
 "use client"
 import { useState } from "react";
+import { FaGithub, FaLinkedin, FaXTwitter } from "react-icons/fa6";
+import Footer from "@/components/Footer";
 
 const Navbar = () => {
-
     const routeMap = {
         "about": "/about",
         "home": "/",
-    }
+    };
 
     const [menuOpen, setMenuOpen] = useState(false);
 
@@ -16,6 +17,51 @@ const Navbar = () => {
                 <h1 className="text-2xl font-bold text-black">Salman Sayyed</h1>
                 <p className="text-sm text-gray-500">Cloud Engineer</p>
             </a>
+            {/* Navigation options and social icons */}
+            <div className="hidden md:flex items-center space-x-8 ml-auto">
+                <ul className="flex space-x-4">
+                    {Object.keys(routeMap).map((key) => (
+                        <li key={key}>
+                            <a
+                                href={routeMap[key]}
+                                className="relative group text-black transition-colors duration-300 ease-in-out text-sm"
+                            >
+                                {key}
+                                <span className="absolute left-0 bottom-0 w-0 h-[2px] bg-black transition-all duration-500 ease-in-out group-hover:w-full"></span>
+                            </a>
+                        </li>
+                    ))}
+                </ul>
+                <div className="flex items-center space-x-4 ml-8">
+                    <a
+                        href="https://github.com/gh0stfrk"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-black hover:text-gray-700 transition-colors text-xl"
+                        aria-label="GitHub"
+                    >
+                        <FaGithub />
+                    </a>
+                    <a
+                        href="https://www.linkedin.com/in/syydsalman"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-black hover:text-gray-700 transition-colors text-xl"
+                        aria-label="LinkedIn"
+                    >
+                        <FaLinkedin />
+                    </a>
+                    <a
+                        href="https://x.com/gh0stfrk"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-black hover:text-gray-700 transition-colors text-xl"
+                        aria-label="Twitter"
+                    >
+                        <FaXTwitter />
+                    </a>
+                </div>
+            </div>
             {/* Hamburger menu for mobile */}
             <div className="md:hidden">
                 <button
@@ -28,20 +74,6 @@ const Navbar = () => {
                     <span className={`block h-1 w-6 bg-black rounded-full transition-all duration-300 ${menuOpen ? "-rotate-45 -translate-y-2" : ""}`}></span>
                 </button>
             </div>
-            {/* Navigation options */}
-            <ul className="hidden md:flex space-x-4">
-                {Object.keys(routeMap).map((key) => (
-                    <li key={key}>
-                        <a
-                            href={routeMap[key]}
-                            className="relative group text-black transition-colors duration-300 ease-in-out text-sm"
-                        >
-                            {key}
-                            <span className="absolute left-0 bottom-0 w-0 h-[2px] bg-black transition-all duration-500 ease-in-out group-hover:w-full"></span>
-                        </a>
-                    </li>
-                ))}
-            </ul>
             {/* Mobile menu */}
             {menuOpen && (
                 <div className="fixed inset-0 bg-white z-50 flex flex-col md:hidden transition-transform duration-300 ease-in-out transform animate-slide-in">
@@ -54,8 +86,38 @@ const Navbar = () => {
                         <span className="block w-6 h-0.5 bg-black rotate-45 absolute"></span>
                         <span className="block w-6 h-0.5 bg-black -rotate-45"></span>
                     </button>
+                    {/* Social icons in mobile menu */}
+                    <div className="flex space-x-6 mt-24 ml-8 mb-8">
+                        <a
+                            href="https://github.com/gh0stfrk"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="text-black hover:text-gray-700 transition-colors text-2xl"
+                            aria-label="GitHub"
+                        >
+                            <FaGithub />
+                        </a>
+                        <a
+                            href="https://www.linkedin.com/in/syydsalman"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="text-black hover:text-gray-700 transition-colors text-2xl"
+                            aria-label="LinkedIn"
+                        >
+                            <FaLinkedin />
+                        </a>
+                        <a
+                            href="https://x.com/gh0stfrk"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="text-black hover:text-gray-700 transition-colors text-2xl"
+                            aria-label="Twitter"
+                        >
+                            <FaXTwitter />
+                        </a>
+                    </div>
                     {/* Navigation items */}
-                    <ul className="mt-24 ml-8 flex flex-col items-start space-y-8">
+                    <ul className="ml-8 flex flex-col items-start space-y-8">
                         {Object.keys(routeMap).map((key) => (
                             <li key={key}>
                                 <a

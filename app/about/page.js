@@ -6,18 +6,22 @@ export default function AboutPage() {
     return (
         <div className="min-h-screen flex flex-col bg-white">
             <Navbar />
-            <main className="flex-1 max-w-2xl mx-auto py-16 px-4">
-                <h1 className="text-4xl font-bold mb-6 text-black">About Me</h1>
-                <p className="text-lg mb-4 text-gray-700">
-                    Hello! I’m Salman, a passionate software developer focused on building modern, performant, and user-friendly web applications. My portfolio showcases a range of projects that highlight my skills in JavaScript, React, and other cutting-edge technologies.
-                </p>
-                <p className="text-lg mb-4 text-gray-700">
-                    I enjoy solving complex problems and turning ideas into reality through code. Whether working independently or as part of a team, I strive for clean, maintainable, and scalable solutions.
-                </p>
-                <p className="text-lg text-gray-700">
-                    Feel free to explore my work and reach out if you’d like to collaborate!
-                </p>
-            </main>
+            <div className="flex-1 flex items-center justify-center px-4 flex-wrap flex-row-reverse">
+                <main className="flex-1 mx-auto py-16 px-4 max-w-2xl">
+                    <h1 className="text-4xl font-bold mb-6 text-black">About Me</h1>
+                    <p className="text-lg mb-4 text-gray-700">
+                        Hello! I'm Salman, a passionate software developer focused on building modern, 
+                        scalable, and efficient cloud solutions.
+                    </p>
+                    <p className="text-lg mb-4 text-gray-700">
+                        I like solving problems and bringing ideas to life with code. 
+                        I aim to build clean, reliable systems, whether working alone or with a team.
+                    </p>
+                    <p className="text-lg text-gray-700">
+                        Take a look at my work, and feel free to reach out if you're interested in collaborating.
+                    </p>
+                </main>
+            </div>
             <Footer />
         </div>
     );
