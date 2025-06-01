@@ -19,6 +19,9 @@ const font = Roboto_Mono({
 export default function RootLayout({ children }) {
   return (
     <html lang="en" className={font.className}>
+      <head>
+        <link rel="icon" href="icon.png" />
+      </head>
       <body className="max-w-screen-xl mx-auto">
         {children}
       </body>

@@ -1,6 +1,8 @@
 import fs from "fs";
 import Markdown from "markdown-to-jsx";
 import matter from "gray-matter";
+import path from "path";
+import { notFound } from "next/navigation";
 
 import Navbar from "@/components/NavBar";
 import Breadcrumbs from "@/components/BreadCrumbs";
@@ -8,11 +10,22 @@ import getPostMetadata from "@/utils/getPostMetadata.js";
 import Footer from "@/components/Footer";
 
 const getPostContent = (slug) => {
-    const folder = "posts/";
-    const file = `${folder}${slug}.md`;
-    const content = fs.readFileSync(file, "utf8");
-    const matterResult = matter(content);
-    return matterResult;
+    if (!/^[a-zA-Z0-9-_]+$/.test(slug)) {
+        notFound();
+    }
+    const folder = path.join(process.cwd(), "posts");
+    const file = path.join(folder, `${slug}.md`);
+
+    if (!file.startsWith(folder)) {
+        notFound();
+    }
+    try {
+        const content = fs.readFileSync(file, "utf8");
+        const matterResult = matter(content);
+        return matterResult;
+    } catch (error) {
+        notFound();
+    }
 };
 
 export const generateStaticParams = async () => {
