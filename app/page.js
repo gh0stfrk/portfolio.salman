@@ -13,12 +13,12 @@ const HomePage = () => {
       {/* Hero Section */}
 
       <section className="w-full flex flex-col items-center py-12 mb-8">
-        <img src="/agentVenom.png" alt="Salman" className="w-24 h-24 rounded-full mb-4 shadow" />
+        {/* <img src="/agentVenom.png" alt="Salman" className="w-24 h-24 rounded-full mb-4 shadow" /> */}
 
         <h1 className="text-3xl font-bold mb-2 font-custom">Hi, I'm Salman</h1>
         <p className="text-lg text-gray-600 mb-4">Cloud Engineer</p>
         <p className="text-center max-w-2xl text-gray-500 mb-6">
-          I build scalable cloud solutions and modern web applications. Passionate about technology and sharing knowledge.
+          I build scalable cloud solutions and modern web applications, passionate about technology and sharing knowledge.
         </p>
         <p className="flex gap-4">
           <Link href="/about" className="px-6 py-2 bg-blue-600 text-white rounded-lg font-semibold shadow hover:bg-blue-700 transition">Connect</Link>
