@@ -14,7 +14,8 @@ const getPostMetadata = () => {
       date: matterResult.data.date,
       subtitle: matterResult.data.subtitle,
       slug: fileName.replace(".md", ""),
-      tags: matterResult.data.tags
+      tags: matterResult.data.tags,
+      author: matterResult.data.author || "Salman Syed",
     };
   });
 

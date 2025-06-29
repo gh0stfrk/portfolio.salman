@@ -14,8 +14,9 @@ const Navbar = () => {
     return (
         <nav className="flex p-5 justify-between items-center">
             <a className="logo" href="/">
-                <h1 className="text-2xl font-bold text-black">Salman Sayyed</h1>
-                <p className="text-sm text-gray-500">Cloud Engineer</p>
+                {/* <h1 className="text-2xl font-bold text-black">Salman Sayyed</h1>
+                <p className="text-sm text-gray-500">Cloud Engineer</p> */}
+                <img src="/logo.svg" className="w-11" />
             </a>
             {/* Navigation options and social icons */}
             <div className="hidden md:flex items-center space-x-8 ml-auto">
@@ -69,9 +70,9 @@ const Navbar = () => {
                     className="flex flex-col justify-center items-center w-8 h-8"
                     aria-label="Toggle menu"
                 >
-                    <span className={`block h-1 w-6 bg-black mb-1 rounded-full transition-all duration-300 ${menuOpen ? "rotate-45 translate-y-2" : ""}`}></span>
+                    <span className={`block h-1 w-4 bg-black mb-1 rounded-full transition-all duration-300 ${menuOpen ? "rotate-45 translate-y-2" : ""}`}></span>
                     <span className={`block h-1 w-6 bg-black mb-1 rounded-full transition-all duration-300 ${menuOpen ? "opacity-0" : ""}`}></span>
-                    <span className={`block h-1 w-6 bg-black rounded-full transition-all duration-300 ${menuOpen ? "-rotate-45 -translate-y-2" : ""}`}></span>
+                    <span className={`block h-1 w-4 bg-black rounded-full transition-all duration-300 ${menuOpen ? "-rotate-45 -translate-y-2" : ""}`}></span>
                 </button>
             </div>
             {/* Mobile menu */}
@@ -86,50 +87,53 @@ const Navbar = () => {
                         <span className="block w-6 h-0.5 bg-black rotate-45 absolute"></span>
                         <span className="block w-6 h-0.5 bg-black -rotate-45"></span>
                     </button>
-                    {/* Social icons in mobile menu */}
-                    <div className="flex space-x-6 mt-24 ml-8 mb-8">
-                        <a
-                            href="https://github.com/gh0stfrk"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="text-black hover:text-gray-700 transition-colors text-2xl"
-                            aria-label="GitHub"
-                        >
-                            <FaGithub />
-                        </a>
-                        <a
-                            href="https://www.linkedin.com/in/syydsalman"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="text-black hover:text-gray-700 transition-colors text-2xl"
-                            aria-label="LinkedIn"
-                        >
-                            <FaLinkedin />
-                        </a>
-                        <a
-                            href="https://x.com/gh0stfrk"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="text-black hover:text-gray-700 transition-colors text-2xl"
-                            aria-label="Twitter"
-                        >
-                            <FaXTwitter />
-                        </a>
+                    {/* Navigation links */}
+                    <div className=" w-full flex flex-col items-start">
+                        {/* Social icons in mobile menu */}
+                        <div className="flex space-x-6 mt-20 ml-8 mb-8">
+                            <a
+                                href="https://github.com/gh0stfrk"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="text-black hover:text-gray-700 transition-colors text-2xl"
+                                aria-label="GitHub"
+                            >
+                                <FaGithub />
+                            </a>
+                            <a
+                                href="https://www.linkedin.com/in/syydsalman"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="text-black hover:text-gray-700 transition-colors text-2xl"
+                                aria-label="LinkedIn"
+                            >
+                                <FaLinkedin />
+                            </a>
+                            <a
+                                href="https://x.com/gh0stfrk"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="text-black hover:text-gray-700 transition-colors text-2xl"
+                                aria-label="Twitter"
+                            >
+                                <FaXTwitter />
+                            </a>
+                        </div>
+                        {/* Navigation items */}
+                        <ul className="ml-8 flex w-full flex-col items-start space-y-3 pt-8">
+                            {Object.keys(routeMap).map((key) => (
+                                <li key={key} className="w-full border border-gray-400 rounded">
+                                    <a
+                                        href={routeMap[key]}
+                                        className="text-black w-80% block text-xl font-medium py-2 px-2 hover:bg-gray-100 rounded transition"
+                                        onClick={() => setMenuOpen(false)}
+                                    >
+                                        {key}
+                                    </a>
+                                </li>
+                            ))}
+                        </ul>
                     </div>
-                    {/* Navigation items */}
-                    <ul className="ml-8 flex flex-col items-start space-y-8">
-                        {Object.keys(routeMap).map((key) => (
-                            <li key={key}>
-                                <a
-                                    href={routeMap[key]}
-                                    className="text-black text-2xl font-medium py-2 px-2 hover:bg-gray-100 rounded transition"
-                                    onClick={() => setMenuOpen(false)}
-                                >
-                                    {key}
-                                </a>
-                            </li>
-                        ))}
-                    </ul>
                 </div>
             )}
         </nav>
